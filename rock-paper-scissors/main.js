@@ -79,19 +79,10 @@ replay.addEventListener("click", function() {
 //render game to screen
 function renderGame(game) {
     return `
-        <div class="container d-flex flex-column justify-content-start align-items-center">
-            <h4>Choose your weapon:</h4>
-            <div class="w-50 text-center">
-                <button type="button" class="btn btn-primary" id="rock">Rock</button>
-                <button type="button" class="btn btn-primary" id="paper">Paper</button>
-                <button type="button" class="btn btn-primary" id="scissors">Scissors</button>
-            </div>
-            <div class="d-flex justify-content-center">
-                <div class="m-5">You played: <b>${game.player}</b></div>
-                <div class="m-5">The computer played: <b>${game.computer}</b></div>
-            </div>
-            <h1 class="text-center">${game.winStatus}</h1>
-            <button type="button" class="btn btn-primary" id="replay">Play Again?</button>
-        </div>
+    <div class="d-flex justify-content-center">
+        <div class="m-5">You played: <b>${game.player}</b></div>
+        <div class="m-5">The computer played: <b>${game.computer}</b></div>
+    </div>
+    <h1 class="text-center">${game.winStatus}</h1>
     `
 }
