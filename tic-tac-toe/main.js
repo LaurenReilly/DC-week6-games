@@ -19,18 +19,18 @@ function renderGame(game) {
             <h4>It's player ${game.whoseTurn}'s turn!</h4>
             <div class="w-50 text-center">
                 <button id="a" onclick="setValue(this)">${game.board[0][0]}</button>
-                <button id="b" onclick="">${game.board[0][1]}</button>
-                <button id="c" onclick="">${game.board[0][2]}</button>
+                <button id="b" onclick="setValue(this)">${game.board[0][1]}</button>
+                <button id="c" onclick="setValue(this)">${game.board[0][2]}</button>
             </div>
             <div class="w-50 text-center">
-                <button id="d" onclick="">${game.board[1][0]}</button>
-                <button id="e" onclick="">${game.board[1][1]}</button>
-                <button id="f" onclick="">${game.board[1][2]}</button>
+                <button id="d" onclick="setValue(this)">${game.board[1][0]}</button>
+                <button id="e" onclick="setValue(this)">${game.board[1][1]}</button>
+                <button id="f" onclick="setValue(this)">${game.board[1][2]}</button>
             </div>
             <div class="w-50 text-center">
-                <button id="g" onclick="">${game.board[2][0]}</button>
-                <button id="h" onclick="">${game.board[2][1]}</button>
-                <button id="i" onclick="">${game.board[2][2]}</button>
+                <button id="g" onclick="setValue(this)">${game.board[2][0]}</button>
+                <button id="h" onclick="setValue(this)">${game.board[2][1]}</button>
+                <button id="i" onclick="setValue(this)">${game.board[2][2]}</button>
             </div>
         </div>
     `
@@ -38,32 +38,32 @@ function renderGame(game) {
 
 function setValue(button) {
     switch (button.id) {
-        case a:
+        case "a":
             state.board[0][0] = state.whoseTurn;
             break;
-        case b:
+        case "b":
             state.board[0][1] = state.whoseTurn;
             break;
-        case c:
+        case "c":
             state.board[0][2] = state.whoseTurn;
             break;
-        case d:
-            state.board[0][0] = state.whoseTurn;
+        case "d":
+            state.board[1][0] = state.whoseTurn;
             break;
-        case e:
-            state.board[0][0] = state.whoseTurn;
+        case "e":
+            state.board[1][1] = state.whoseTurn;
             break;
-        case f:
-            state.board[0][0] = state.whoseTurn;
+        case "f":
+            state.board[1][2] = state.whoseTurn;
             break;
-        case g:
-            state.board[0][0] = state.whoseTurn;
+        case "g":
+            state.board[2][0] = state.whoseTurn;
             break;
-        case h:
-            state.board[0][0] = state.whoseTurn;
+        case "h":
+            state.board[2][1] = state.whoseTurn;
             break;
-        case i:
-            state.board[0][0] = state.whoseTurn;
+        case "i":
+            state.board[2][2] = state.whoseTurn;
             break;
     }  
     if (state.whoseTurn === "X") {
