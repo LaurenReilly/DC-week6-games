@@ -1,5 +1,6 @@
 var content = document.getElementById('content');
 var pebbleContainer = document.getElementById('pebbleContainer');
+var options = [1, 2, 3];
 
 var nim = {
     player: 1,
@@ -39,7 +40,7 @@ function removePebbles(pebbles) {
     }
     if (nim.player === 1) {
         nim.player = 2;
-    } else {
+    } else if (nim.player === 2) {
         nim.player = 1;
     }
     content.innerHTML = renderGame(nim);
@@ -58,4 +59,17 @@ function renderWin(winner) {
     return `
         <h1 class="text-center text-success">The Winner is: Player${winner}</h1>
     `
+}
+
+function computerWins() {
+    var pebbles = options[Math.floor(Math.random() * options.length)];
+    if ((nim.pebbleCount -1) % 4 === 0) {
+        removePebbles(1);
+    } else if ((nim.pebbleCount -2)% 4 === 0) {
+        removePebbles(2);
+    } else if ((nim.pebbleCount -3)% 4 === 0) {
+        removePebbles(3);
+    } else {
+        removePebbles(pebbles);
+    }
 }
