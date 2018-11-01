@@ -1,8 +1,10 @@
 var content = document.getElementById('content');
+var winStatus = document.getElementById('win');
+var replay = document.getElementById("replay");
 
+//object representing game state
 var state = {
     whoseTurn: "X",
-    isGameOver: false,
     board: [
         ["", "", ""],
         ["", "", ""],
@@ -10,14 +12,14 @@ var state = {
     ]
 };
 
+//put the generated HTML into the #content div
 content.innerHTML = renderGame(state);
-
+//render HTML from game object information
 function renderGame(game) {
-    // Change this render function to use the "game" parameter
     return `
         <div class="container d-flex flex-column justify-content-start align-items-center">
-            <h4>It's player ${game.whoseTurn}'s turn!</h4>
-            <div class="w-50 text-center">
+            <h4 class="mt-4">It's player ${game.whoseTurn}'s turn!</h4>
+            <div class="w-50 text-center mt-5">
                 <button id="a" onclick="setValue(this)">${game.board[0][0]}</button>
                 <button id="b" onclick="setValue(this)">${game.board[0][1]}</button>
                 <button id="c" onclick="setValue(this)">${game.board[0][2]}</button>
@@ -36,6 +38,12 @@ function renderGame(game) {
     `
 }
 
+function renderWin(player) {
+    winStatus.innerHTML = `Player ${player} wins!`
+    replay.innerHTML = `<button onclick="renderNewGame()" class="btn btn-success m-0-auto" style="width: auto">Play Again?</button>`
+}
+
+//adds X or O to clicked button based on whose turn it is, changes whoseTurn value, renders updated game board
 function setValue(button) {
     switch (button.id) {
         case "a":
@@ -72,14 +80,42 @@ function setValue(button) {
         state.whoseTurn = "X";
     }
     content.innerHTML = renderGame(state);
+    checkWin();
 }
 
-var buttonA = document.getElementById("a");
-var buttonB = document.getElementById("b");
-var buttonC = document.getElementById("c");
-var buttonD = document.getElementById("d");
-var buttonE = document.getElementById("e");
-var buttonF = document.getElementById("f");
-var buttonG = document.getElementById("g");
-var buttonH = document.getElementById("h");
-var buttonI = document.getElementById("i");
+//check the board to see if any win conditions are met
+function checkWin() {
+    if (state.board[0].join("") === "XXX" || state.board[0].join("") === "OOO") {
+        renderWin(state.board[0][0]);
+    } else if (state.board[1].join("") === "XXX" || state.board[1].join("") === "OOO") {
+        renderWin(state.board[1][0]);
+    } else if (state.board[2].join("") === "XXX" || state.board[2].join("") === "OOO") {
+        renderWin(state.board[2][0]);
+    } else if (state.board[0][0] === state.board[1][0] === state.board[2][0]) {
+        renderWin(state.board[0][0]);
+    } else if (state.board[0][1] === state.board[1][1] === state.board[2][1]) {
+        renderWin(state.board[0][1]);
+    } else if (state.board[0][2] === state.board[1][2] === state.board[2][2]) {
+        renderWin(state.board[0][2]);
+    } else if (state.board[0][0] === state.board[1][0] === state.board[2][0]) {
+        renderWin(state.board[0][0]);
+    } else if (state.board[0][0] === state.board[1][1] === state.board[2][2]) {
+        renderWin(state.board[0][0]);
+    } else if (state.board[0][2] === state.board[1][1] === state.board[2][0]) {
+        renderWin(state.board[0][2]);
+    }
+}
+
+function renderNewGame() {
+    state = {
+        whoseTurn: "X",
+        board: [
+            ["", "", ""],
+            ["", "", ""],
+            ["", "", ""]
+        ]
+    };
+    content.innerHTML = renderGame(state);
+    replay.innerHTML = "";
+    winStatus.innerHTML = "Who will win?"
+}
