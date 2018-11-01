@@ -39,7 +39,11 @@ function renderGame(game) {
 }
 
 function renderWin(player) {
-    winStatus.innerHTML = `Player ${player} wins!`
+    if (player === "tie") {
+        winStatus.innerHTML = `Cat's Game!`
+    } else {
+        winStatus.innerHTML = `Player ${player} wins!`
+    }
     replay.innerHTML = `<button onclick="renderNewGame()" class="btn btn-success m-0-auto" style="width: auto">Play Again?</button>`
 }
 
@@ -73,36 +77,39 @@ function setValue(button) {
         case "i":
             state.board[2][2] = state.whoseTurn;
             break;
-    }  
+    } 
+
+    checkWin(state.whoseTurn); 
     if (state.whoseTurn === "X") {
         state.whoseTurn = "O";
     } else {
         state.whoseTurn = "X";
     }
-    content.innerHTML = renderGame(state);
-    checkWin();
+    content.innerHTML = renderGame(state);  
 }
 
 //check the board to see if any win conditions are met
-function checkWin() {
+function checkWin(turn) {
     if (state.board[0].join("") === "XXX" || state.board[0].join("") === "OOO") {
         renderWin(state.board[0][0]);
     } else if (state.board[1].join("") === "XXX" || state.board[1].join("") === "OOO") {
         renderWin(state.board[1][0]);
     } else if (state.board[2].join("") === "XXX" || state.board[2].join("") === "OOO") {
         renderWin(state.board[2][0]);
-    } else if (state.board[0][0] === state.board[1][0] && state.board[1][0] === state.board[2][0]) {
+    } else if (state.board[0][0] === turn && turn === state.board[1][0] && turn === state.board[2][0]) {
         renderWin(state.board[0][0]);
-    } else if (state.board[0][1] === state.board[1][1] && state.board[1][1] === state.board[2][1]) {
+    } else if (state.board[0][1] === turn && turn === state.board[1][1] && turn === state.board[2][1]) {
         renderWin(state.board[0][1]);
-    } else if (state.board[0][2] === state.board[1][2] && state.board[1][2] === state.board[2][2]) {
+    } else if (state.board[0][2] === turn && turn === state.board[1][2] && turn === state.board[2][2]) {
         renderWin(state.board[0][2]);
-    } else if (state.board[0][0] === state.board[1][0] && state.board[1][0] === state.board[2][0]) {
+    } else if (state.board[0][0] === turn && turn === state.board[1][0] && turn === state.board[2][0]) {
         renderWin(state.board[0][0]);
-    } else if (state.board[0][0] === state.board[1][1] && state.board[1][1] === state.board[2][2]) {
+    } else if (state.board[0][0] === turn && turn === state.board[1][1] && turn === state.board[2][2]) {
         renderWin(state.board[0][0]);
-    } else if (state.board[0][2] === state.board[1][1] && state.board[1][1] === state.board[2][0]) {
+    } else if (state.board[0][2] === turn && turn === state.board[1][1] && turn === state.board[2][0]) {
         renderWin(state.board[0][2]);
+    } else if (state.board[0].includes("") === false && state.board[1].includes("") === false && state.board[2].includes("") === false) {
+        renderWin("tie");
     }
 }
 
