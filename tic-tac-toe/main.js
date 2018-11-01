@@ -91,17 +91,17 @@ function checkWin() {
         renderWin(state.board[1][0]);
     } else if (state.board[2].join("") === "XXX" || state.board[2].join("") === "OOO") {
         renderWin(state.board[2][0]);
-    } else if (state.board[0][0] === state.board[1][0] === state.board[2][0]) {
+    } else if (state.board[0][0] === state.board[1][0] && state.board[1][0] === state.board[2][0]) {
         renderWin(state.board[0][0]);
-    } else if (state.board[0][1] === state.board[1][1] === state.board[2][1]) {
+    } else if (state.board[0][1] === state.board[1][1] && state.board[1][1] === state.board[2][1]) {
         renderWin(state.board[0][1]);
-    } else if (state.board[0][2] === state.board[1][2] === state.board[2][2]) {
+    } else if (state.board[0][2] === state.board[1][2] && state.board[1][2] === state.board[2][2]) {
         renderWin(state.board[0][2]);
-    } else if (state.board[0][0] === state.board[1][0] === state.board[2][0]) {
+    } else if (state.board[0][0] === state.board[1][0] && state.board[1][0] === state.board[2][0]) {
         renderWin(state.board[0][0]);
-    } else if (state.board[0][0] === state.board[1][1] === state.board[2][2]) {
+    } else if (state.board[0][0] === state.board[1][1] && state.board[1][1] === state.board[2][2]) {
         renderWin(state.board[0][0]);
-    } else if (state.board[0][2] === state.board[1][1] === state.board[2][0]) {
+    } else if (state.board[0][2] === state.board[1][1] && state.board[1][1] === state.board[2][0]) {
         renderWin(state.board[0][2]);
     }
 }
