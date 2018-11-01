@@ -88,7 +88,7 @@ function setValue(button) {
     content.innerHTML = renderGame(state);  
 }
 
-//check the board to see if any win conditions are met
+//check the board to see if any win conditions are met or if it is a tie
 function checkWin(turn) {
     if (state.board[0].join("") === "XXX" || state.board[0].join("") === "OOO") {
         renderWin(state.board[0][0]);

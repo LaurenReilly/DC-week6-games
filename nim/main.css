@@ -2,10 +2,10 @@
     width: 20px;
     height: 20px;
     border-radius: 20px;
-    background-color: #999999;
+    background-color: #ffb600;
     display: inline-block;
 }
 
 .pebble:first-child {
-    background-color: #ffb600
+    
 }
